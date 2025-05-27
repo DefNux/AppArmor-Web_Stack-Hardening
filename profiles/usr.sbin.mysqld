@@ -1,0 +1,41 @@
+# profiles/mysqld.apparmor
+
+#include <tunables/global>
+
+profile mysqld /usr/sbin/mysqld {
+  # Common abstractions
+  #include <abstractions/base>
+  #include <abstractions/mysql>
+  #include <abstractions/nameservice>
+
+  # MySQL binary
+  /usr/sbin/mysqld r,
+
+  # Configuration files
+  /etc/mysql/** r,
+
+  # Data and runtime directories
+  /var/lib/mysql/** rwk,
+  /var/run/mysqld/mysqld.pid rw,
+  /var/run/mysqld/** rw,
+  /var/log/mysql/** r,
+
+  # Temporary files
+  /tmp/** rw,
+
+  # Socket for client connections
+  /run/mysqld/mysqld.sock rw,
+
+  # Capabilities for basic DB operation
+  capability dac_override,
+  capability chown,
+  capability setgid,
+  capability setuid,
+  capability sys_resource,
+  capability fowner,
+
+  # Networking
+  network inet stream,
+  network inet6 stream,
+}
+

@@ -1,0 +1,43 @@
+# profiles/nginx.apparmor
+
+#include <tunables/global>
+
+profile nginx /usr/sbin/nginx {
+  # Basic access to binaries and libraries
+  /usr/sbin/nginx r,
+  /usr/share/nginx/** r,
+  /usr/lib/** mr,
+
+  # Configuration files
+  /etc/nginx/** r,
+
+  # Web content
+  /var/www/** r,
+
+  # Logs
+  /var/log/nginx/** rw,
+  /var/log/** rw,
+
+  # PID and runtime files
+  /run/nginx.pid rw,
+  /run/nginx/** rw,
+  /var/run/nginx/** rw,
+
+  # Temporary and cache directories
+  /tmp/** rw,
+  /var/cache/nginx/** rw,
+
+  # Capabilities
+  capability net_bind_service,
+  capability setuid,
+  capability setgid,
+
+  # Networking
+  network inet stream,
+  network inet6 stream,
+
+  # Inherit abstractions
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+}
+

@@ -1,0 +1,7 @@
+==== AppArmor Denied Logs: 2025-05-27 11:30:03 ====
+May 24 08:49:16 app-virtual-machine kernel: [   20.263536] audit: type=1400 audit(1748056756.746:51): apparmor="DENIED" operation="capable" class="cap" profile="/usr/sbin/cupsd" pid=806 comm="cupsd" capability=12  capname="net_admin"
+May 24 08:49:21 app-virtual-machine kernel: [   24.886321] audit: type=1400 audit(1748056761.368:54): apparmor="DENIED" operation="open" class="file" profile="snap-update-ns.firefox" name="/usr/local/share/" pid=988 comm="6" requested_mask="r" denied_mask="r" fsuid=0 ouid=0
+May 24 08:49:35 app-virtual-machine kernel: [   38.820894] audit: type=1400 audit(1748056775.302:55): apparmor="DENIED" operation="capable" class="cap" profile="/usr/lib/snapd/snap-confine" pid=1470 comm="snap-confine" capability=12  capname="net_admin"
+May 24 08:49:35 app-virtual-machine kernel: [   38.820900] audit: type=1400 audit(1748056775.302:56): apparmor="DENIED" operation="capable" class="cap" profile="/usr/lib/snapd/snap-confine" pid=1470 comm="snap-confine" capability=38  capname="perfmon"
+May 24 08:51:52 app-virtual-machine kernel: [  176.021406] audit: type=1400 audit(1748056912.504:57): apparmor="DENIED" operation="capable" class="cap" profile="/usr/lib/snapd/snap-confine" pid=1913 comm="snap-confine" capability=12  capname="net_admin"
+May 24 08:51:52 app-virtual-machine kernel: [  176.021412] audit: type=1400 audit(1748056912.504:58): apparmor="DENIED" operation="capable" class="cap" profile="/usr/lib/snapd/snap-confine" pid=1913 comm="snap-confine" capability=38  capname="perfmon"

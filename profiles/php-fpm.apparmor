@@ -1,0 +1,43 @@
+# profiles/php-fpm.apparmor
+
+#include <tunables/global>
+
+profile php-fpm /usr/sbin/php-fpm {
+  # Common abstractions
+  #include <abstractions/base>
+  #include <abstractions/php>
+  #include <abstractions/nameservice>
+
+  # Binary
+  /usr/sbin/php-fpm r,
+
+  # PHP configuration
+  /etc/php/** r,
+
+  # Runtime and PID files
+  /var/run/php/** rw,
+  /run/php/** rw,
+
+  # Website files and includes
+  /var/www/** r,
+
+  # PHP error and access logs
+  /var/log/php8.1-fpm.log rw,
+  /var/log/php/** rw,
+
+  # Temporary files
+  /tmp/** rw,
+
+  # Sockets (used to communicate with web server like Nginx)
+  /run/php/php8.1-fpm.sock rw,
+
+  # Capabilities
+  capability setgid,
+  capability setuid,
+  capability dac_override,
+
+  # Networking (if needed)
+  network inet stream,
+  network inet6 stream,
+}
+
